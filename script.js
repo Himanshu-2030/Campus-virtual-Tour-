@@ -1,0 +1,689 @@
+// ===========================================
+// pannellum viewer section
+// ===========================================
+
+// Create a Pannellum viewer, targeting an element with ID 'panorama', and passing in an options object as the second argument
+ var viewer = pannellum.viewer('panorama', {
+    // Define the default settings for all scenes   
+    "default": {
+        "firstScene": "entry",
+        "sceneFadeDuration": 1000,
+        "autoLoad":true,
+    },
+// Define the individual scenes within the panorama
+    "scenes": {
+         // Define the first scene, called 'entry'
+        "entry": {
+            "title": "Welcome to SSTC Virtual Tour",
+            "hfov": 130,
+            "pitch": 5,
+            "yaw": -6,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/4xgwY16.jpg",
+           
+ // Add hotspots to this scene
+            "hotSpots": [
+                
+                {
+                    "pitch": -2.118,
+                    "yaw": -3.241,
+                    "type": "scene",
+                    "text": "Enter",
+                    "sceneId": "temple",
+                    },
+                {
+                    "pitch": -7.54,
+                    "yaw": -30.2,
+                    "type": "info",
+                    "text": "Location",
+                    "URL": "https://goo.gl/maps/X6f4BcKqFiAhSRjf9 ",
+                    
+                }
+            ]
+        },
+        // Add more scenes here, following the same format as 'entry'
+        "temple": {
+            "title": "Temple",
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/dDdfu0b.jpg",
+            "hotSpots": [
+                {
+                    "pitch": -17,
+                    "yaw": -4,
+                    "type": "info",
+                    "text": "A religious building that's meant for worshipping or praying",
+                    
+                },
+                {
+                    "pitch": 0.913,
+                    "yaw": -2.5,
+                    "type": "scene",
+                    "text": "Visit",
+                    "sceneId": "temple-in",
+                },
+
+                {
+                    "pitch":  -0.3480,
+                    "yaw": -85.8,
+                    "type": "scene",
+                    "text": "shops",
+                    "sceneId": "shop",
+                },
+                
+                {
+                    "pitch":  -3.8127,
+                    "yaw": 87.062,
+                    "type": "scene",
+                    "sceneId": "entry",
+                    "text": "Exit",
+                    "targetYaw": -23,
+                    "targetPitch": 2,
+                   
+                }
+            ]
+        },
+
+        "temple-in": {
+            "title": "Temple",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/xz3anEW.jpg",
+            "hotSpots": [
+                {
+                    "pitch": -19.1572,
+                    "yaw": 178.26,
+                    "type": "scene",
+                    "text": "Exit",
+                    "sceneId": "temple"
+                }
+
+            ]
+        },
+        "shop": {
+            "title": "Hostel",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/pCpq96u.jpeg",
+            "hotSpots": [
+            {
+                    "pitch": -3.772,
+                    "yaw": -143.99,
+                    "type": "scene",
+                    "text":"Back",
+                    "sceneId": "entry",
+                },
+                {
+                    "pitch": 8,
+                    "yaw": -8.1,
+                    "type": "info",
+                    "text": "Central Library",
+                },
+                {
+                    "pitch": 4,
+                    "yaw": 180,
+                    "type": "info",
+                    "text":"Boys Hostel",
+                },
+                 {
+                    "pitch": -7.793,
+                    "yaw": 54,
+                    "type": "scene",
+                    "text":"Canteen",
+                    "sceneId": "canteen",
+                },
+               
+     
+                {
+                    "pitch": -4,
+                    "yaw": -36,
+                    "type": "scene",
+                    "text":"Administrative Block",
+                    "sceneId": "administrative-block",
+                }
+
+            ]
+        },
+        "administrative-block": {
+            "title": "Administrative Block",
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+           
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/3OFjgfT.jpg",
+            "hotSpots": [
+                {
+                    "pitch": -0.6,
+                    "yaw": 37.1,
+                    "type": "scene",
+                    "text": "Main Ground",
+                    "sceneId": "main-ground",
+                },
+               
+                {
+                    "pitch": -0.63,
+                    "yaw": 179,
+                    "type": "scene",
+                    "text": "Back",
+                    "sceneId": "shop",
+                }
+
+            ]
+        },
+        "main-ground": {
+            "title": "Ground",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/jBJNKmb.jpg",
+            "hotSpots": [
+                {
+                    "pitch": 2,
+                    "yaw": -179,
+                    "type": "scene",
+                    "text": "Administrative Block",
+                    "sceneId": "administrative-block",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": 1,
+                    "yaw": 108,
+                    "type": "scene",
+                    "text": "Road",
+                    
+                    "sceneId": "first-road",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+            ]
+        },
+        "first-road": {
+            "title": "Road",
+            "hfov": 110,
+            "pitch": 0,
+            "yaw": 0,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/lmYrrH1.jpg",
+            "hotSpots": [
+                {
+                    "pitch": -1,
+                    "yaw": 138,
+                    "type": "scene",
+                    "text": "Main Ground",
+                    "sceneId": "main-ground",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": -12,
+                    "yaw": -150,
+                    "type": "scene",
+                    "text": "CSE Block",
+                    "sceneId": "cse",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+            ]
+        },
+        "cse": {
+            "title": "CSE Block",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/G35WV1y.jpg",
+            "hotSpots": [
+                {
+                    "pitch": -4,
+                    "yaw": -0.9,
+                    "type": "scene",
+                    "text": "back",
+                    "sceneId": "first-road",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": -4,
+                    "yaw": 90,
+                    "type": "scene",
+                    "text": "CSE Block",
+                    "sceneId": "cse-in",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": -6,
+                    "yaw": 173,
+                    "type": "scene",
+                    "text": "ETC Block",
+                    "sceneId": "etc",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": -1.1,
+                    "yaw": -142,
+                    "type": "scene",
+                    "text": "Park",
+                    "sceneId": "cse-front-park",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+            ]
+        },
+        "cse-in": {
+            "title": "CSE Block",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/KS4AXBS.jpg",
+            "hotSpots": [
+                {
+                    "pitch": -8,
+                    "yaw": -175,
+                    "type": "scene",
+                    "text": "exit",
+                    "sceneId": "cse",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+            ]
+        },
+        "cse-front-park": {
+            "title": "Park",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/p5MEzrb.jpg",
+            "hotSpots": [
+                {
+                    "pitch": 1.29,
+                    "yaw": 110,
+                    "type": "scene",
+                    "text": "CSE Block",
+                    "sceneId": "cse",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": 1.5,
+                    "yaw": -158,
+                    "type": "scene",
+                    "text": "ETC Block",
+                    "sceneId": "etc",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": 1,
+                    "yaw": -79,
+                    "type": "scene",
+                    "text": "Mech Block",
+                    "sceneId": "mech",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+
+            ]
+        },
+        "etc": {
+            "title": "ETC Block",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/RJWnpOi.jpg",
+            "hotSpots": [
+                {
+                    "pitch": 1,
+                    "yaw": -39,
+                    "type": "scene",
+                    "text": "Park",
+                    "sceneId": "cse-front-park",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": -1.3,
+                    "yaw": 176,
+                    "type": "scene",
+                    "text": "workshop",
+                    "sceneId": "near-workshop",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+            ]
+        },
+        "near-workshop": {
+            "title": "Workshop",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/ePcQaZT.jpg",
+            "hotSpots": [
+                {
+                    "pitch": 2.3,
+                    "yaw": 1.95,
+                    "type": "scene",
+                    "text": "ETC Block",
+                    "sceneId": "etc",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": -1.6,
+                    "yaw": -88,
+                    "type": "scene",
+                    "text": "Civil Block",
+                    "sceneId": "civil",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+            ]
+        },
+        "civil": {
+            "title": "Civil Block",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/5qGEIMn.jpg",
+            "hotSpots": [
+                {
+                    "pitch": -3,
+                    "yaw": 47.1,
+                    "type": "scene",
+                    "text": "Road",
+                    "sceneId": "main-road",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": -5,
+                    "yaw": 156,
+                    "type": "scene",
+                    "text": "Workshop",
+                    "sceneId": "near-workshop",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+
+            ]
+        },
+        "main-road": {
+            "title": "Road",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/iLNztss.jpg",
+            "hotSpots": [
+                {
+                    "pitch": -0.6,
+                    "yaw": -2.8,
+                    "type": "scene",
+                    "text": "Canteen",
+                    "sceneId": "canteen",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": 2,
+                    "yaw": 168,
+                    "type": "scene",
+                    "text": "Civil Block",
+                    "sceneId": "civil",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+
+            ]
+        },
+        "canteen": {
+            "title": "Canteen",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/MfBXvo0.jpg",
+            "hotSpots": [
+            {
+                    "pitch": -1.79,
+                    "yaw": -101,
+                    "type": "scene",
+                    "text": "Road",
+                    "sceneId": "main-road",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": 1.832,
+                    "yaw": -48.71,
+                    "type": "scene",
+                    "text": " Student Parking",
+                    "sceneId": "parking",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": -0.7,
+                    "yaw": 6.4,
+                    "type": "scene",
+                    "text": " Canteen",
+                    "sceneId": "canteen-in",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": -3.14,
+                    "yaw": 80,
+                    "type": "scene",
+                    "text": " Shop",
+                    "sceneId": "shop",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                },
+                {
+                    "pitch": .189,
+                    "yaw": 109,
+                    "type": "scene",
+                    "text": "Faculty of Management",
+                    "sceneId": "f1-in",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+
+
+            ]
+        },
+        "canteen-in": {
+            "title": "Canteen",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/tFXPpiS.jpg",
+            "hotSpots": [
+                
+                {
+                    "pitch": -14,
+                    "yaw": -4,
+                    "type": "scene",
+                    "text": " Canteen",
+                    "sceneId": "canteen",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+
+            ]
+        },
+        "parking": {
+            "title": "Student Parking",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/PkY19UK.jpg",
+            "hotSpots": [
+                {
+                    "pitch": -5,
+                    "yaw": -157,
+                    "type": "scene",
+                    "text": "Canteen",
+                    "sceneId": "canteen",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+            ]
+        },
+        
+        "mech": {
+            "title": "Mech Block",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/A7kX95l.jpg",
+            "hotSpots": [
+                {
+                    "pitch": 2,
+                    "yaw": -173,
+                    "type": "scene",
+                    "text": "Park",
+                    "sceneId": "cse-front-park",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+            ]
+        },
+        "f1-in": {
+            "title": "First Year Block",
+            "hfov": 110,
+            "pitch": -3,
+            "yaw": 117,
+            "type": "equirectangular",
+            "panorama": "https://i.imgur.com/ddLWhoW.jpg",
+            "hotSpots": [
+                {
+                    "pitch": -3.5,
+                    "yaw":-73,
+                    "type": "scene",
+                    "text": "Back",
+                    "sceneId": "canteen",
+                    "targetYaw": -23,
+                    "targetPitch": 2
+                }
+
+            ]
+        }
+    },
+    });
+
+//     -----------------------------
+// sound section here
+// -----------------------------
+
+// Declare a variable to store the current audio element being played
+let currentAudioElement;
+
+// Declare an object containing mappings of scene names to their corresponding audio ids
+const sceneAudioMap = {
+  'entry': 'entry',
+  'temple': 'temple',
+  'temple-in': 'temple-in',
+  'shop': 'shops',
+  'administrative-block': 'admin',
+  'main-ground': 'ground',
+  'first-road': 'first-road',
+  'cse': 'cse',
+  'cse-in': 'cse-in',
+  'cse-front-park': 'park',
+  'etc': 'etc',
+  'near-workshop': 'workshop',
+  'civil': 'civil',
+//   'main-road': '',
+  'canteen': 'canteen',
+  'canteen-in': 'canteen-in',
+  'parking': 'parking',
+  'mech': 'mech',
+  'f1-in': 'cse-in',
+
+  // add more scenes and their corresponding audio IDs here
+};
+
+
+// Listen for scene change event on viewer
+viewer.on('scenechange', function(sceneId) {
+  // Get the audio id associated with the new scene
+  const newAudioId = sceneAudioMap[sceneId];
+  
+  // If there is an audio id associated with the new scene...
+  if (newAudioId) {
+    // Get the audio element from the DOM using its id
+    const newAudioElement = document.getElementById(newAudioId);
+
+    // If the new audio element exists and is different than the current one...
+    if (newAudioElement && currentAudioElement !== newAudioElement) {
+      currentAudioElement?.pause(); // Pause current audio if it exists
+      currentAudioElement = newAudioElement; // Set the new current audio element
+      currentAudioElement.play(); // Play the new current audio element
+    }
+  }
+});
+
+
+
+// ---------------------------
+//  new section
+//  ---------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
