@@ -38,6 +38,7 @@ html{
     box-shadow: rgba(0, 0, 0, .35) 0px 5px 15px;
   }
   .pnlm-load-box {
-   z-index:-999;
-   opacity: 0;
-  }
+    z-index:-999;
+    opacity: 0;
+   }
+  

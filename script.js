@@ -110,7 +110,7 @@
             "pitch": -3,
             "yaw": 0,
             "type": "equirectangular",
-            "panorama": "https://i.imgur.com/pCpq96u.jpeg",
+            "panorama": "https://i.imgur.com/vvmeoC1.jpeg",
             "hotSpots": [
             {
                     "pitch": -3.772,
@@ -157,7 +157,7 @@
             "yaw": 0,
            
             "type": "equirectangular",
-            "panorama": "https://i.imgur.com/3OFjgfT.jpg",
+            "panorama": "https://i.imgur.com/VLaaWjP.jpeg",
             "hotSpots": [
                 {
                     "pitch": -0.6,
@@ -213,7 +213,7 @@
             "pitch": 0,
             "yaw": 0,
             "type": "equirectangular",
-            "panorama": "https://i.imgur.com/lmYrrH1.jpg",
+            "panorama": "https://i.imgur.com/Z76W6HO.jpeg",
             "hotSpots": [
                 {
                     "pitch": -1,
@@ -607,8 +607,7 @@
 // sound section here
 // -----------------------------
 
-// Declare a variable to store the current audio element being played
-let currentAudioElement;
+
 
 // Declare an object containing mappings of scene names to their corresponding audio ids
 const sceneAudioMap = {
@@ -636,52 +635,65 @@ const sceneAudioMap = {
 };
 
 
-// Listen for scene change event on viewer
-viewer.on('scenechange', function(sceneId) {
-  // Get the audio id associated with the new scene
-  const newAudioId = sceneAudioMap[sceneId];
-  
-  // If there is an audio id associated with the new scene...
-  if (newAudioId) {
-    // Get the audio element from the DOM using its id
-    const newAudioElement = document.getElementById(newAudioId);
 
-    // If the new audio element exists and is different than the current one...
-    if (newAudioElement && currentAudioElement !== newAudioElement) {
-      currentAudioElement?.pause(); // Pause current audio if it exists
-      currentAudioElement = newAudioElement; // Set the new current audio element
-      currentAudioElement.play(); // Play the new current audio element
+// Declare a variable to store the current audio element being played
+let currentAudioElement;
+
+// Function to play audio for the current scene
+function playAudioForScene(sceneId) {
+  const audioId = sceneAudioMap[sceneId];
+  if (audioId) {
+    const audioElement = document.getElementById(audioId);
+    if (audioElement && audioElement.paused) {
+      // Pause and reset the current audio if it exists
+      if (currentAudioElement) {
+        currentAudioElement.pause();
+        currentAudioElement.currentTime = 0;
+      }
+      
+
+      // Check if the document has received user interaction
+      if (hasUserInteracted()) {
+        audioElement.play();
+        currentAudioElement = audioElement;
+      } else {
+        // Set up an event listener to play audio on user interaction
+        document.addEventListener('click', function onUserInteraction() {
+          audioElement.play();
+          currentAudioElement = audioElement;
+          document.removeEventListener('click', onUserInteraction);
+        });
+      }
     }
+  }
+}
+
+// Function to check if the document has received user interaction
+function hasUserInteracted() {
+  return document.documentElement.classList.contains('user-interacted');
+}
+
+// Set up an event listener to mark the document as having received user interaction
+document.addEventListener('click', function markUserInteracted() {
+  document.documentElement.classList.add('user-interacted');
+  document.removeEventListener('click', markUserInteracted);
+});
+
+// Listen for scene change event on viewer
+viewer.on('scenechange', function(event) {
+  // Check if the event object and its 'scene' property are defined
+  if (event && event.scene) {
+    playAudioForScene(event.scene.id);
   }
 });
 
-
-
-// ---------------------------
-//  new section
-//  ---------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// Trigger audio play for the initial scene after viewer is loaded
+viewer.on('load', function() {
+  // Check if the viewer object and its 'getScene' method are defined
+  if (viewer && viewer.getScene) {
+    playAudioForScene(viewer.getScene());
+  }
+});
 
 
 
