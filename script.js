@@ -641,59 +641,59 @@ let currentAudioElement;
 
 // Function to play audio for the current scene
 function playAudioForScene(sceneId) {
-  const audioId = sceneAudioMap[sceneId];
-  if (audioId) {
-    const audioElement = document.getElementById(audioId);
-    if (audioElement && audioElement.paused) {
-      // Pause and reset the current audio if it exists
-      if (currentAudioElement) {
-        currentAudioElement.pause();
-        currentAudioElement.currentTime = 0;
-      }
-      
-
-      // Check if the document has received user interaction
-      if (hasUserInteracted()) {
-        audioElement.play();
-        currentAudioElement = audioElement;
-      } else {
-        // Set up an event listener to play audio on user interaction
-        document.addEventListener('click', function onUserInteraction() {
+    const audioId = sceneAudioMap[sceneId];
+    if (audioId) {
+      const audioElement = document.getElementById(audioId);
+      if (audioElement && audioElement.paused) {
+        // Pause and reset the current audio if it exists
+        if (currentAudioElement) {
+          currentAudioElement.pause();
+          currentAudioElement.currentTime = 0;
+        }
+  
+        // Check if the document has received user interaction
+        if (hasUserInteracted()) {
           audioElement.play();
           currentAudioElement = audioElement;
-          document.removeEventListener('click', onUserInteraction);
-        });
+        } else {
+          // Set up an event listener to play audio on user interaction
+          document.addEventListener('click', function onUserInteraction() {
+            audioElement.play();
+            currentAudioElement = audioElement;
+            document.removeEventListener('click', onUserInteraction);
+          });
+        }
       }
     }
   }
-}
-
-// Function to check if the document has received user interaction
-function hasUserInteracted() {
-  return document.documentElement.classList.contains('user-interacted');
-}
-
-// Set up an event listener to mark the document as having received user interaction
-document.addEventListener('click', function markUserInteracted() {
-  document.documentElement.classList.add('user-interacted');
-  document.removeEventListener('click', markUserInteracted);
-});
-
-// Listen for scene change event on viewer
-viewer.on('scenechange', function(event) {
-  // Check if the event object and its 'scene' property are defined
-  if (event && event.scene) {
-    playAudioForScene(event.scene.id);
+  
+  // Function to check if the document has received user interaction
+  function hasUserInteracted() {
+    return document.documentElement.classList.contains('user-interacted');
   }
-});
-
-// Trigger audio play for the initial scene after viewer is loaded
-viewer.on('load', function() {
-  // Check if the viewer object and its 'getScene' method are defined
-  if (viewer && viewer.getScene) {
-    playAudioForScene(viewer.getScene());
-  }
-});
+  
+  // Set up an event listener to mark the document as having received user interaction
+  document.addEventListener('click', function markUserInteracted() {
+    document.documentElement.classList.add('user-interacted');
+    document.removeEventListener('click', markUserInteracted);
+  });
+  
+  // Listen for scene change event on viewer
+  viewer.on('scenechange', function(event) {
+    // Check if the event object and its 'scene' property are defined
+    if (event && event.scene) {
+      playAudioForScene(event.scene.id);
+    }
+  });
+  
+  // Trigger audio play for the initial scene after viewer is loaded
+  viewer.on('load', function() {
+    // Check if the viewer object and its 'getScene' method are defined
+    if (viewer && viewer.getScene) {
+      playAudioForScene(viewer.getScene());
+    }
+  });
+  
 
 
 
