@@ -1,6 +1,9 @@
 // ===========================================
 // pannellum viewer section
 // ===========================================
+// alert for playing audio 
+
+alert("After the view loads, simply tap anywhere in the view to start the audio. Make sure you have a stable internet connection.");
 
 // Create a Pannellum viewer, targeting an element with ID 'panorama', and passing in an options object as the second argument
  var viewer = pannellum.viewer('panorama', {
